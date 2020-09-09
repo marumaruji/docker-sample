@@ -16,3 +16,16 @@ services:
       - ./db/sql:/docker-entrypoint-initdb.d
     ports:
       - 3306:3306
+  # node.js
+  nodejs:
+    build: ./nodejs
+    container_name: nodejs
+    image: marumaruji/nodejs:12
+    #    environment:
+    #      TZ: 'Asia/Tokyo'
+    volumes:
+      - ./src:/opt/src:delegated
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
